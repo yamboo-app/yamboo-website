@@ -1,3 +1,5 @@
+import { env } from "./env";
+
 const services = [
   {
     title: "Technical Consulting",
@@ -103,14 +105,60 @@ const processStats = [
   { value: "03", label: "Build the product" },
 ];
 
-const defaultBookingUrl =
-  "https://calendly.com/stupasolutions25/30min?hide_event_type_details=1&hide_gdpr_banner=1";
-const defaultContactEmail = "stupasolutions25@gmail.com";
-
-const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL ?? defaultBookingUrl;
+const bookingUrl = env.bookingUrl;
 const bookingEmbedUrl = bookingUrl ? getBookingEmbedUrl(bookingUrl) : undefined;
-const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? defaultContactEmail;
+const contactEmail = env.contactEmail;
 const contactFormAction = `mailto:${contactEmail}`;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": `${env.siteUrl}/#business`,
+      name: "Yamboo Studio",
+      url: env.siteUrl,
+      email: contactEmail,
+      description:
+        "Product engineering, AI automation, technology consulting, custom software development, and workflow automation for growing businesses.",
+      areaServed: "Worldwide",
+      serviceType: [
+        "Technical consulting",
+        "Product engineering",
+        "AI automation",
+        "Custom software development",
+        "Workflow automation",
+        "Cloud integration",
+      ],
+      sameAs: [bookingUrl],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${env.siteUrl}/#website`,
+      name: "Yamboo Studio",
+      url: env.siteUrl,
+      publisher: {
+        "@id": `${env.siteUrl}/#business`,
+      },
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${env.siteUrl}/#services`,
+      name: "Yamboo Studio services",
+      itemListElement: services.map((service, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Service",
+          name: service.title,
+          description: service.description,
+          provider: {
+            "@id": `${env.siteUrl}/#business`,
+          },
+        },
+      })),
+    },
+  ],
+};
 
 function getBookingEmbedUrl(url: string) {
   try {
@@ -137,6 +185,10 @@ export default function Home() {
 
   return (
     <main className="min-h-screen overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <div className="noise" />
 
       <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
@@ -430,8 +482,13 @@ Your strategic partner for technology consulting, product engineering and AI aut
             Services
           </p>
           <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#171717] sm:text-5xl">
-            Capabilities for serious software projects.
+            Product engineering, AI automation, and software consulting capabilities.
           </h2>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-[#65665f]">
+            We help teams turn business workflows into reliable digital products,
+            AI-assisted operations, custom software, and scalable automation
+            systems.
+          </p>
         </div>
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
