@@ -103,10 +103,14 @@ const processStats = [
   { value: "03", label: "Build the product" },
 ];
 
-const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL;
+const defaultBookingUrl =
+  "https://calendly.com/stupasolutions25/30min?hide_event_type_details=1&hide_gdpr_banner=1";
+const defaultContactEmail = "stupasolutions25@gmail.com";
+
+const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL ?? defaultBookingUrl;
 const bookingEmbedUrl = bookingUrl ? getBookingEmbedUrl(bookingUrl) : undefined;
-const contactFormAction =
-  process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ?? "mailto:hello@yamboostudio.com";
+const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? defaultContactEmail;
+const contactFormAction = `mailto:${contactEmail}`;
 
 function getBookingEmbedUrl(url: string) {
   try {
@@ -537,7 +541,7 @@ Your strategic partner for technology consulting, product engineering and AI aut
           <div className="overflow-hidden rounded-lg border border-[#171717]/10 bg-white">
             {bookingEmbedUrl ? (
               <iframe
-                className="h-[680px] w-full border-0"
+                className="block h-[600px] w-full border-0"
                 src={bookingEmbedUrl}
                 title="Book a consultation with Yamboo Studio"
               />
