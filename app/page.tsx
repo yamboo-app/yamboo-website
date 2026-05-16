@@ -2,7 +2,7 @@ const services = [
   {
     title: "Custom Software",
     description:
-      "Purpose-built platforms, internal tools, dashboards, and customer-facing web apps.",
+      "Production-grade platforms, operational systems, dashboards, and customer-facing web apps.",
   },
   {
     title: "AI-Powered Tools",
@@ -31,7 +31,7 @@ const services = [
   },
 ];
 
-const process = [
+const approachSteps = [
   {
     title: "Discover the business workflow",
     description:
@@ -65,7 +65,72 @@ const signals = [
   "Cloud",
 ];
 
+const navItems = [
+  { label: "Services", href: "#services" },
+  { label: "Approach", href: "#approach" },
+  { label: "Book", href: "#book" },
+  { label: "Contact", href: "#contact" },
+];
+
+const serviceNumberStyles = [
+  "text-[#c45a2c]",
+  "text-[#2f5f8f]",
+  "text-[#171717]",
+  "text-[#c45a2c]",
+  "text-[#2f5f8f]",
+  "text-[#171717]",
+];
+
+const serviceCardStyles = [
+  "border-[#171717]/10 bg-white/76",
+  "border-[#171717]/10 bg-white/76",
+  "border-[#171717]/10 bg-white/76",
+  "border-[#171717]/10 bg-white/76",
+  "border-[#171717]/10 bg-white/76",
+  "border-[#171717]/10 bg-white/76",
+];
+
+const approachNumberStyles = [
+  "text-[#c45a2c]",
+  "text-[#2f5f8f]",
+  "text-[#171717]",
+  "text-[#c45a2c]",
+];
+
+const processStats = [
+  { value: "01", label: "Map the workflow" },
+  { value: "02", label: "Design the system" },
+  { value: "03", label: "Build the product" },
+];
+
+const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL;
+const bookingEmbedUrl = bookingUrl ? getBookingEmbedUrl(bookingUrl) : undefined;
+const contactFormAction =
+  process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ?? "mailto:hello@yamboostudio.com";
+
+function getBookingEmbedUrl(url: string) {
+  try {
+    const embedUrl = new URL(url);
+
+    if (embedUrl.hostname.includes("calendly.com")) {
+      embedUrl.searchParams.set("hide_gdpr_banner", "1");
+      embedUrl.searchParams.set("primary_color", "171717");
+    }
+
+    if (embedUrl.hostname.includes("cal.com")) {
+      embedUrl.searchParams.set("theme", "light");
+      embedUrl.searchParams.set("layout", "month_view");
+    }
+
+    return embedUrl.toString();
+  } catch {
+    return url;
+  }
+}
+
 export default function Home() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <main className="min-h-screen overflow-hidden">
       <div className="noise" />
@@ -79,20 +144,16 @@ export default function Home() {
             Yamboo Studio
           </span>
         </a>
-        <nav className="hidden items-center gap-7 text-sm text-[#4d4e48] md:flex">
-          <a className="transition hover:text-[#171717]" href="#services">
-            Services
-          </a>
-          <a className="transition hover:text-[#171717]" href="#approach">
-            Approach
-          </a>
-          <a className="transition hover:text-[#171717]" href="#contact">
-            Contact
-          </a>
+        <nav className="hidden items-center gap-8 md:flex">
+          {navItems.map((item) => (
+            <a className="nav-link" href={item.href} key={item.href}>
+              {item.label}
+            </a>
+          ))}
         </nav>
         <a
-          className="rounded bg-[#171717] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#244b47]"
-          href="#contact"
+          className="rounded bg-[#171717] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#2b2b2b]"
+          href="#book"
         >
           Book a consultation
         </a>
@@ -100,28 +161,22 @@ export default function Home() {
 
       <section className="mx-auto grid max-w-7xl gap-12 px-5 pb-20 pt-14 sm:px-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:pb-28 lg:pt-20">
         <div>
-          <p className="mb-5 text-sm font-semibold tracking-[0.2em] text-[#2f6b63] uppercase">
-            Product studio and technology partner
-          </p>
+          <p className="mb-5 inline-flex rounded bg-[#f3e8dc] px-3 py-2 text-sm font-semibold tracking-[0.2em] text-[#8b3f22] uppercase">
+Product-led engineering studio          </p>
           <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] text-[#171717] sm:text-6xl lg:text-7xl">
             Yamboo Studio
           </h1>
-          <p className="mt-7 max-w-2xl text-xl leading-8 text-[#3f403b] sm:text-2xl sm:leading-9">
-            Your technology partner for modern software, AI, and automation.
-          </p>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-[#65665f] sm:text-lg">
-            We help businesses design, build, and scale custom digital products,
-            AI-powered tools, and workflow automation systems.
-          </p>
+          <p className="mt-6 max-w-xl text-lg leading-7 text-[#3f403b] sm:text-xl sm:leading-8">
+Your strategic partner for technology consulting, product engineering and AI automation          </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a
-              className="rounded bg-[#171717] px-6 py-3.5 text-center text-sm font-semibold text-white transition hover:bg-[#244b47]"
-              href="#contact"
+              className="rounded bg-[#171717] px-6 py-3.5 text-center text-sm font-semibold text-white transition hover:bg-[#2b2b2b]"
+              href="#book"
             >
               Book a consultation
             </a>
             <a
-              className="rounded border border-[#171717]/15 bg-white/55 px-6 py-3.5 text-center text-sm font-semibold text-[#171717] transition hover:border-[#244b47]/35 hover:bg-white"
+              className="rounded border border-[#171717]/15 bg-white/55 px-6 py-3.5 text-center text-sm font-semibold text-[#171717] transition hover:border-[#171717]/35 hover:bg-white"
               href="#services"
             >
               Explore services
@@ -129,110 +184,278 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="studio-panel relative rounded-lg border border-[#171717]/10 bg-white/70 p-4 backdrop-blur">
-          <div className="rounded-md border border-[#171717]/10 bg-[#f9faf7] p-4">
-            <div className="flex items-center justify-between border-b border-[#171717]/10 pb-4">
-              <div>
-                <p className="text-xs font-semibold tracking-[0.18em] text-[#68736b] uppercase">
-                  Solution workspace
-                </p>
-                <h2 className="mt-2 text-xl font-semibold text-[#171717]">
-                  Operating system for growth
-                </h2>
+        <div className="studio-panel relative rounded-lg border border-[#171717]/10 bg-white/75 p-4 backdrop-blur">
+          <div className="rounded-md border border-[#171717]/10 bg-[#faf9f5] p-4">
+            <div className="flex items-center justify-between pb-4">
+              <div className="flex gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#c45a2c]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#2f5f8f]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#171717]" />
               </div>
-              <div className="rounded bg-[#244b47] px-3 py-2 text-xs font-semibold text-white">
-                Live build
-              </div>
+              <p className="text-xs font-semibold tracking-[0.18em] text-[#65665f] uppercase">
+                Studio system
+              </p>
             </div>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-md bg-[#171717] p-5 text-white">
-                <p className="text-xs uppercase tracking-[0.16em] text-white/55">
-                  AI workflow
-                </p>
-                <p className="mt-8 text-4xl font-semibold">42%</p>
-                <p className="mt-2 text-sm text-white/65">
-                  Less manual review time
-                </p>
-              </div>
-              <div className="rounded-md border border-[#171717]/10 bg-white p-5">
-                <p className="text-xs uppercase tracking-[0.16em] text-[#7b766d]">
-                  Integration map
-                </p>
-                <div className="mt-8 grid grid-cols-3 gap-2">
-                  {["CRM", "API", "ERP", "DB", "AI", "Ops"].map((item) => (
-                    <span
-                      className="rounded border border-[#171717]/10 bg-[#f6f8f6] py-2 text-center text-xs font-semibold text-[#3f403b]"
-                      key={item}
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-3 rounded-md border border-[#171717]/10 bg-white p-5">
-              <div className="flex items-center justify-between gap-4">
-                <p className="text-sm font-semibold text-[#171717]">
-                  Product engineering sprint
-                </p>
-                <p className="text-sm text-[#65665f]">Week 03</p>
-              </div>
-              <div className="mt-5 grid gap-3">
-                {[
-                  ["Workflow model", "92%"],
-                  ["AI prompt layer", "78%"],
-                  ["Admin dashboard", "64%"],
-                ].map(([label, value]) => (
-                  <div key={label}>
-                    <div className="mb-2 flex justify-between text-xs text-[#65665f]">
-                      <span>{label}</span>
-                      <span>{value}</span>
-                    </div>
-                    <div className="h-2 rounded bg-[#dfe7df]">
-                      <div
-                        className="h-2 rounded bg-[#2f6b63]"
-                        style={{ width: value }}
-                      />
+            <div className="min-h-[440px] rounded-md bg-[#171717] p-5 text-white">
+              <div className="grid h-full min-h-[400px] gap-3 sm:grid-cols-[0.9fr_1.1fr]">
+                <div className="flex flex-col justify-between rounded-md bg-[#f3e8dc] p-5 text-[#171717]">
+                  <div>
+                    <p className="text-xs font-semibold tracking-[0.16em] text-[#8b3f22] uppercase">
+                      Operating view
+                    </p>
+                    <p className="mt-8 text-5xl font-semibold leading-none">
+                      3
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-[#3f403b]">
+                      Product, AI, and automation working as one system.
+                    </p>
+                  </div>
+                  <div className="overflow-hidden">
+                    <div className="hero-slide grid gap-2">
+                      {["Plan", "Build", "Scale", "Launch", "Improve", "Plan"].map(
+                        (item, index) => (
+                          <div
+                            className="flex items-center justify-between rounded border border-[#171717]/10 bg-white/70 px-3 py-2 text-xs font-semibold"
+                            key={`${item}-${index}`}
+                          >
+                            <span>{item}</span>
+                            <span
+                              className={[
+                                "h-2 w-2 rounded-full",
+                                index % 3 === 0 && "bg-[#c45a2c]",
+                                index % 3 === 1 && "bg-[#2f5f8f]",
+                                index % 3 === 2 && "bg-[#171717]",
+                              ]
+                                .filter(Boolean)
+                                .join(" ")}
+                            />
+                          </div>
+                        ),
+                      )}
                     </div>
                   </div>
-                ))}
+                </div>
+
+                <div className="grid gap-3">
+                  <div className="rounded-md border border-white/10 bg-white/[0.06] p-4">
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs font-semibold tracking-[0.16em] text-white/55 uppercase">
+                        System map
+                      </p>
+                      <p className="text-xs font-semibold text-[#d9c7b3]">
+                        Live model
+                      </p>
+                    </div>
+                    <div className="mt-5 grid grid-cols-3 gap-2">
+                      {["Product", "AI", "Ops"].map((item, index) => (
+                        <div
+                          className={[
+                            "hero-float rounded p-3 text-xs font-semibold",
+                            index === 0 && "bg-[#c45a2c] text-white",
+                            index === 1 && "bg-[#2f5f8f] text-white",
+                            index === 2 && "bg-white text-[#171717]",
+                          ]
+                            .filter(Boolean)
+                            .join(" ")}
+                          key={item}
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-5 grid gap-3">
+                      {[
+                        ["Workflow model", "86%"],
+                        ["AI assistance", "64%"],
+                        ["Automation layer", "78%"],
+                      ].map(([label, value], index) => (
+                        <div key={label}>
+                          <div className="mb-2 flex justify-between text-xs text-white/55">
+                            <span>{label}</span>
+                            <span>{value}</span>
+                          </div>
+                          <div className="h-2 rounded-full bg-white/10">
+                            <div
+                              className={[
+                                "hero-progress h-2 rounded-full bg-[#d9c7b3]",
+                                index === 1 && "hero-progress-delay-1",
+                                index === 2 && "hero-progress-delay-2",
+                              ]
+                                .filter(Boolean)
+                                .join(" ")}
+                              style={{ width: value }}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="rounded-md bg-white p-4 text-[#171717]">
+                    <p className="text-sm font-semibold">
+                      Production-grade software, AI tools, and automation
+                      systems for growing businesses.
+                    </p>
+                    <div className="mt-5 grid grid-cols-3 gap-2">
+                      {["Secure", "Scalable", "Useful"].map((item) => (
+                        <span
+                          className="rounded border border-[#171717]/10 bg-[#faf9f5] px-2 py-2 text-center text-xs font-semibold text-[#65665f]"
+                          key={item}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-[#171717]/10 bg-[#171717] py-5 text-white">
+      <section className="border-y border-[#171717]/10 bg-[#171717] py-5">
         <div className="flex w-max gap-4 whitespace-nowrap marquee">
           {[...signals, ...signals].map((signal, index) => (
-            <span
-              className="rounded border border-white/12 px-5 py-2 text-sm text-white/72"
-              key={`${signal}-${index}`}
-            >
+            <span className="rounded border border-white/12 px-5 py-2 text-sm text-white/72" key={`${signal}-${index}`}>
               {signal}
             </span>
           ))}
         </div>
       </section>
 
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
+        <div className="grid gap-12 lg:grid-cols-[0.72fr_1fr] lg:items-end">
+          <div>
+            <p className="text-sm font-semibold tracking-[0.2em] text-[#171717] uppercase">
+              How we think
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#171717] sm:text-5xl">
+              Visualizing the system before building it.
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-7 text-[#65665f]">
+              We turn business workflows into product maps, AI workflows, and
+              automation logic before implementation begins.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {processStats.map((stat) => (
+              <div
+                className="rounded-lg border border-[#171717]/10 bg-white/70 p-5"
+                key={stat.label}
+              >
+                <p className="text-5xl font-semibold leading-none text-[#171717]">
+                  {stat.value}
+                </p>
+                <p className="mt-3 text-sm leading-5 text-[#65665f]">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-10 rounded-lg border border-[#171717]/10 bg-white/70 p-5 sm:p-7">
+          <div className="grid gap-6 lg:grid-cols-3">
+            {[
+              {
+                title: "Workflow blueprint",
+                label: "Map",
+                detail: "People, steps, data, and systems.",
+                color: "bg-[#c45a2c]",
+                surface: "bg-[#fbf4ec]",
+                blockOne: "bg-[#f3e8dc]",
+                blockTwo: "bg-[#fff8ef]",
+                blockThree: "bg-[#c45a2c]",
+              },
+              {
+                title: "Solution architecture",
+                label: "Shape",
+                detail: "Product surface, AI layer, and integrations.",
+                color: "bg-[#2f5f8f]",
+                surface: "bg-[#f0f5f8]",
+                blockOne: "bg-[#e2edf3]",
+                blockTwo: "bg-white",
+                blockThree: "bg-[#2f5f8f]",
+              },
+              {
+                title: "Delivery roadmap",
+                label: "Ship",
+                detail: "Milestones, risks, ownership, and launch path.",
+                color: "bg-[#171717]",
+                surface: "bg-[#f4f3ee]",
+                blockOne: "bg-[#e7e3da]",
+                blockTwo: "bg-white",
+                blockThree: "bg-[#171717]",
+              },
+            ].map((item, index) => (
+              <div className={["relative min-h-64 rounded-md p-5", item.surface].join(" ")} key={item.title}>
+                <div className="flex items-center justify-between">
+                  <span className={["h-3 w-3 rounded-full", item.color].join(" ")} />
+                  <span className="text-xs font-semibold text-[#65665f]">
+                    0{index + 1}
+                  </span>
+                </div>
+                <div className="mt-10 h-24 rounded border border-[#171717]/10 bg-white/72 p-3">
+                  <div className="h-2 w-2/3 rounded-full bg-[#171717]/20" />
+                  <div className="mt-4 grid grid-cols-3 gap-2">
+                    <div className={["h-10 rounded", item.blockOne].join(" ")} />
+                    <div className={["h-10 rounded", item.blockTwo].join(" ")} />
+                    <div className={["h-10 rounded", item.blockThree].join(" ")} />
+                  </div>
+                </div>
+                <p className="mt-8 text-xs font-semibold tracking-[0.16em] text-[#8b3f22] uppercase">
+                  {item.label}
+                </p>
+                <h3 className="mt-3 text-xl font-semibold text-[#171717]">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-[#65665f]">
+                  {item.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28" id="services">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold tracking-[0.2em] text-[#2f6b63] uppercase">
+          <p className="text-sm font-semibold tracking-[0.2em] text-[#171717] uppercase">
             Services
           </p>
           <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#171717] sm:text-5xl">
-            Strategy, software, AI, and automation under one roof.
+            Capabilities for serious software projects.
           </h2>
         </div>
-        <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-[#171717]/10 bg-[#171717]/10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
-            <article className="bg-[#f6f8f6] p-7" key={service.title}>
-              <p className="text-sm font-semibold text-[#2f6b63]">
-                0{index + 1}
-              </p>
-              <h3 className="mt-10 text-xl font-semibold text-[#171717]">
+            <article
+              className={[
+                "min-h-64 rounded-lg border p-7 transition hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_60px_rgba(17,24,39,0.08)]",
+                serviceCardStyles[index],
+              ]
+                .filter(Boolean)
+                .join(" ")}
+              key={service.title}
+            >
+              <div className="flex items-center justify-between">
+                <p className={["text-sm font-semibold", serviceNumberStyles[index]].join(" ")}>
+                  0{index + 1}
+                </p>
+                <span
+                  className={[
+                    "h-2 w-8 rounded-full",
+                    index % 3 === 0 && "bg-[#c45a2c]",
+                    index % 3 === 1 && "bg-[#2f5f8f]",
+                    index % 3 === 2 && "bg-[#171717]",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                />
+              </div>
+              <h3 className="mt-16 text-2xl font-semibold text-[#171717]">
                 {service.title}
               </h3>
               <p className="mt-4 text-sm leading-6 text-[#65665f]">
@@ -243,10 +466,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#e4ebe4] px-5 py-20 sm:px-8 lg:py-28" id="approach">
+      <section className="bg-[#f1ece3] px-5 py-20 sm:px-8 lg:py-28" id="approach">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="text-sm font-semibold tracking-[0.2em] text-[#2f6b63] uppercase">
+            <p className="text-sm font-semibold tracking-[0.2em] text-[#171717] uppercase">
               Approach
             </p>
             <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#171717] sm:text-5xl">
@@ -254,12 +477,12 @@ export default function Home() {
             </h2>
           </div>
           <div className="grid gap-4">
-            {process.map((step, index) => (
+            {approachSteps.map((step, index) => (
               <div
                 className="grid gap-5 rounded-lg border border-[#171717]/10 bg-[#f6f8f6]/75 p-5 sm:grid-cols-[72px_1fr]"
                 key={step.title}
               >
-                <span className="text-sm font-semibold text-[#2f6b63]">
+                <span className={["text-sm font-semibold", approachNumberStyles[index]].join(" ")}>
                   0{index + 1}
                 </span>
                 <div>
@@ -276,56 +499,157 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28" id="contact">
-        <div className="grid gap-12 rounded-lg border border-[#171717]/10 bg-white/65 p-6 backdrop-blur sm:p-10 lg:grid-cols-[1fr_0.78fr] lg:p-12">
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28" id="book">
+        <div className="grid gap-10 rounded-lg border border-[#171717]/10 bg-[#f8f2e8] p-6 backdrop-blur sm:p-10 lg:grid-cols-[0.72fr_1fr] lg:p-12">
           <div>
-            <p className="text-sm font-semibold tracking-[0.2em] text-[#2f6b63] uppercase">
+            <p className="text-sm font-semibold tracking-[0.2em] text-[#171717] uppercase">
               Book a consultation
             </p>
             <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#171717] sm:text-5xl">
               Bring the business problem. We will help shape the technical path.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#65665f]">
-              Share what you are trying to improve, automate, or build. We will
-              follow up with a focused next step.
+              A focused consultation is best when you already have a workflow,
+              product idea, automation opportunity, or technical decision to
+              unpack.
+            </p>
+            <div className="mt-8 grid gap-3 text-sm text-[#3f403b]">
+              {["Product and workflow fit", "AI and automation opportunities", "Build path, scope, and next steps"].map(
+                (item, index) => (
+                  <div className="flex items-center gap-3" key={item}>
+                    <span
+                      className={[
+                        "h-2 w-2 rounded-full",
+                        index === 0 && "bg-[#c45a2c]",
+                        index === 1 && "bg-[#2f5f8f]",
+                        index === 2 && "bg-[#171717]",
+                      ]
+                        .filter(Boolean)
+                        .join(" ")}
+                    />
+                    <span>{item}</span>
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-lg border border-[#171717]/10 bg-white">
+            {bookingEmbedUrl ? (
+              <iframe
+                className="h-[680px] w-full border-0"
+                src={bookingEmbedUrl}
+                title="Book a consultation with Yamboo Studio"
+              />
+            ) : (
+              <div className="grid min-h-[520px] content-between p-6 sm:p-8">
+                <div>
+                  <p className="text-sm font-semibold tracking-[0.16em] text-[#171717] uppercase">
+                    Calendar
+                  </p>
+                  <h3 className="mt-4 text-2xl font-semibold text-[#171717]">
+                    Consultation availability
+                  </h3>
+                  <p className="mt-4 max-w-md text-sm leading-6 text-[#65665f]">
+                    Booking will open here once the scheduling link is connected.
+                    Until then, enquiries can come through the contact form.
+                  </p>
+                </div>
+                <a
+                  className="rounded bg-[#171717] px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#2b2b2b]"
+                  href="#contact"
+                >
+                  Send an enquiry
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28" id="contact">
+        <div className="grid gap-12 rounded-lg border border-[#171717]/10 bg-[#fbf8f1] p-6 backdrop-blur sm:p-10 lg:grid-cols-[0.85fr_1fr] lg:p-12">
+          <div>
+            <p className="text-sm font-semibold tracking-[0.2em] text-[#171717] uppercase">
+              Contact
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#171717] sm:text-5xl">
+              Prefer to send a message first?
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-7 text-[#65665f]">
+              Tell us what you are trying to improve, automate, or build. We
+              will review it and come back with a practical next step.
             </p>
           </div>
-          <form className="grid gap-4">
+          <form
+            action={contactFormAction}
+            className="grid gap-4 rounded-lg border border-[#171717]/10 bg-white/72 p-5 sm:p-7"
+            encType="text/plain"
+            method="post"
+          >
             <label className="grid gap-2 text-sm font-medium text-[#3f403b]">
               Name
               <input
-                className="h-12 rounded border border-[#171717]/12 bg-[#f6f8f6] px-4 text-[#171717] outline-none transition focus:border-[#2f6b63]"
+                className="h-12 rounded border border-[#171717]/12 bg-white px-4 text-[#171717] outline-none transition placeholder:text-[#65665f]/55 focus:border-[#c45a2c]"
+                name="name"
                 placeholder="Your name"
+                required
                 type="text"
               />
             </label>
             <label className="grid gap-2 text-sm font-medium text-[#3f403b]">
               Email
               <input
-                className="h-12 rounded border border-[#171717]/12 bg-[#f6f8f6] px-4 text-[#171717] outline-none transition focus:border-[#2f6b63]"
+                className="h-12 rounded border border-[#171717]/12 bg-white px-4 text-[#171717] outline-none transition placeholder:text-[#65665f]/55 focus:border-[#c45a2c]"
+                name="email"
                 placeholder="you@company.com"
+                required
                 type="email"
               />
             </label>
             <label className="grid gap-2 text-sm font-medium text-[#3f403b]">
-              What are you building?
+              Company
+              <input
+                className="h-12 rounded border border-[#171717]/12 bg-white px-4 text-[#171717] outline-none transition placeholder:text-[#65665f]/55 focus:border-[#c45a2c]"
+                name="company"
+                placeholder="Company name"
+                type="text"
+              />
+            </label>
+            <label className="grid gap-2 text-sm font-medium text-[#3f403b]">
+              Project type
+              <select
+                className="h-12 rounded border border-[#171717]/12 bg-white px-4 text-[#171717] outline-none transition focus:border-[#c45a2c]"
+                name="project_type"
+              >
+                <option>Custom software</option>
+                <option>AI-powered tool</option>
+                <option>Workflow automation</option>
+                <option>Technical consulting</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+            <label className="grid gap-2 text-sm font-medium text-[#3f403b]">
+              Message
               <textarea
-                className="min-h-32 rounded border border-[#171717]/12 bg-[#f6f8f6] px-4 py-3 text-[#171717] outline-none transition focus:border-[#2f6b63]"
+                className="min-h-36 rounded border border-[#171717]/12 bg-white px-4 py-3 text-[#171717] outline-none transition placeholder:text-[#65665f]/55 focus:border-[#c45a2c]"
+                name="message"
                 placeholder="A custom platform, AI workflow, automation system..."
+                required
               />
             </label>
             <button
-              className="mt-2 rounded bg-[#171717] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#244b47]"
-              type="button"
+              className="mt-2 rounded bg-[#171717] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#2b2b2b]"
+              type="submit"
             >
-              Request consultation
+              Send message
             </button>
           </form>
         </div>
       </section>
 
       <footer className="mx-auto flex max-w-7xl flex-col gap-4 border-t border-[#171717]/10 px-5 py-8 text-sm text-[#65665f] sm:flex-row sm:items-center sm:justify-between sm:px-8">
-        <p>Yamboo Studio</p>
+        <p>© {currentYear} Yamboo Studio</p>
         <p>Modern software, AI, and automation.</p>
       </footer>
     </main>

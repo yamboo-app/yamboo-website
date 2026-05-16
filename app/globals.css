@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f8f6;
+  --background: #f7f6f1;
   --foreground: #171717;
   --muted: #65665f;
   --line: rgba(23, 23, 23, 0.12);
@@ -24,7 +24,7 @@ body {
 }
 
 ::selection {
-  background: #1c5f5a;
+  background: #171717;
   color: #fff;
 }
 
@@ -47,8 +47,63 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.74);
 }
 
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0;
+  color: #4d4e48;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  transition: color 180ms ease;
+}
+
+.nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: 0.25rem;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: #171717;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.nav-link:hover {
+  color: #171717;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
 .marquee {
   animation: marquee 24s linear infinite;
+}
+
+.hero-slide {
+  animation: hero-slide 10s ease-in-out infinite;
+}
+
+.hero-float {
+  animation: hero-float 5.5s ease-in-out infinite;
+}
+
+.hero-progress {
+  transform-origin: left;
+  animation: hero-progress 4.8s ease-in-out infinite;
+}
+
+.hero-progress-delay-1 {
+  animation-delay: 0.45s;
+}
+
+.hero-progress-delay-2 {
+  animation-delay: 0.9s;
 }
 
 @keyframes marquee {
@@ -60,12 +115,50 @@ body {
   }
 }
 
+@keyframes hero-slide {
+  0%,
+  24% {
+    transform: translateY(0);
+  }
+  38%,
+  62% {
+    transform: translateY(-2.5rem);
+  }
+  76%,
+  100% {
+    transform: translateY(-5rem);
+  }
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes hero-progress {
+  0%,
+  100% {
+    transform: scaleX(0.86);
+  }
+  50% {
+    transform: scaleX(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .marquee {
+  .marquee,
+  .hero-slide,
+  .hero-float,
+  .hero-progress {
     animation: none;
   }
 }
