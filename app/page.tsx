@@ -1,5 +1,10 @@
 const services = [
   {
+    title: "Technical Consulting",
+    description:
+      "Roadmaps, audits, vendor selection, build-versus-buy decisions, and execution support.",
+  },
+  {
     title: "Custom Software",
     description:
       "Production-grade platforms, operational systems, dashboards, and customer-facing web apps.",
@@ -18,11 +23,6 @@ const services = [
     title: "Product Engineering",
     description:
       "Modern architecture, UX-minded delivery, scalable codebases, and shipping discipline.",
-  },
-  {
-    title: "Technical Consulting",
-    description:
-      "Roadmaps, audits, vendor selection, build-versus-buy decisions, and execution support.",
   },
   {
     title: "Cloud & Integration",
@@ -612,7 +612,9 @@ Your strategic partner for technology consulting, product engineering and AI aut
               />
             </label>
             <label className="grid gap-2 text-sm font-medium text-[#3f403b]">
-              Company
+              <span>
+                Company <span className="font-normal text-[#65665f]">(optional)</span>
+              </span>
               <input
                 className="h-12 rounded border border-[#171717]/12 bg-white px-4 text-[#171717] outline-none transition placeholder:text-[#65665f]/55 focus:border-[#c45a2c]"
                 name="company"
@@ -621,15 +623,17 @@ Your strategic partner for technology consulting, product engineering and AI aut
               />
             </label>
             <label className="grid gap-2 text-sm font-medium text-[#3f403b]">
-              Project type
+              <span>
+                Project type <span className="font-normal text-[#65665f]">(optional)</span>
+              </span>
               <select
                 className="h-12 rounded border border-[#171717]/12 bg-white px-4 text-[#171717] outline-none transition focus:border-[#c45a2c]"
                 name="project_type"
               >
+                <option>Technical consulting</option>
                 <option>Custom software</option>
                 <option>AI-powered tool</option>
                 <option>Workflow automation</option>
-                <option>Technical consulting</option>
                 <option>Not sure yet</option>
               </select>
             </label>
