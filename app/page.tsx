@@ -420,8 +420,8 @@ Your strategic partner for technology consulting, product engineering and AI aut
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28" id="services">
-        <div className="max-w-3xl">
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
+        <div className="max-w-3xl scroll-mt-6 sm:scroll-mt-8" id="services">
           <p className="text-sm font-semibold tracking-[0.2em] text-[#171717] uppercase">
             Services
           </p>
@@ -466,9 +466,9 @@ Your strategic partner for technology consulting, product engineering and AI aut
         </div>
       </section>
 
-      <section className="bg-[#f1ece3] px-5 py-20 sm:px-8 lg:py-28" id="approach">
+      <section className="bg-[#f1ece3] px-5 py-20 sm:px-8 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
+          <div className="scroll-mt-6 sm:scroll-mt-8" id="approach">
             <p className="text-sm font-semibold tracking-[0.2em] text-[#171717] uppercase">
               Approach
             </p>
@@ -499,9 +499,9 @@ Your strategic partner for technology consulting, product engineering and AI aut
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28" id="book">
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
         <div className="grid gap-10 rounded-lg border border-[#171717]/10 bg-[#f8f2e8] p-6 backdrop-blur sm:p-10 lg:grid-cols-[0.72fr_1fr] lg:p-12">
-          <div>
+          <div className="scroll-mt-6 sm:scroll-mt-8" id="book">
             <p className="text-sm font-semibold tracking-[0.2em] text-[#171717] uppercase">
               Book a consultation
             </p>
@@ -567,9 +567,9 @@ Your strategic partner for technology consulting, product engineering and AI aut
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28" id="contact">
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
         <div className="grid gap-12 rounded-lg border border-[#171717]/10 bg-[#fbf8f1] p-6 backdrop-blur sm:p-10 lg:grid-cols-[0.85fr_1fr] lg:p-12">
-          <div>
+          <div className="scroll-mt-6 sm:scroll-mt-8" id="contact">
             <p className="text-sm font-semibold tracking-[0.2em] text-[#171717] uppercase">
               Contact
             </p>
