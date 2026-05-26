@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { env } from "./env";
 import "./globals.css";
 
-const siteName = "Yamboo Studio";
+const siteName = "Yamboo Tech";
 const title =
-  "Yamboo Studio | Product Engineering, AI Automation & Technology Consulting";
+  "Yamboo Tech | Product Engineering, AI Automation & Technology Consulting";
 const description =
-  "Yamboo Studio is a product engineering agency helping businesses design, build, and scale custom software, AI-powered tools, workflow automation, and modern digital platforms.";
+  "Yamboo Tech is a product engineering agency helping businesses design, build, and scale custom software, AI-powered tools, workflow automation, and modern digital platforms.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "AI-powered tools",
     "workflow automation",
     "software consulting",
-    "product development studio",
+    "technology product development",
     "digital product engineering",
     "business process automation",
   ],

@@ -115,7 +115,7 @@ const structuredData = {
     {
       "@type": "ProfessionalService",
       "@id": `${env.siteUrl}/#business`,
-      name: "Yamboo Studio",
+      name: "Yamboo Tech",
       url: env.siteUrl,
       email: contactEmail,
       description:
@@ -134,7 +134,7 @@ const structuredData = {
     {
       "@type": "WebSite",
       "@id": `${env.siteUrl}/#website`,
-      name: "Yamboo Studio",
+      name: "Yamboo Tech",
       url: env.siteUrl,
       publisher: {
         "@id": `${env.siteUrl}/#business`,
@@ -143,7 +143,7 @@ const structuredData = {
     {
       "@type": "ItemList",
       "@id": `${env.siteUrl}/#services`,
-      name: "Yamboo Studio services",
+      name: "Yamboo Tech services",
       itemListElement: services.map((service, index) => ({
         "@type": "ListItem",
         position: index + 1,
@@ -192,12 +192,12 @@ export default function Home() {
       <div className="noise" />
 
       <header className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
-        <a href="#" className="flex items-center gap-3" aria-label="Yamboo Studio home">
+        <a href="#" className="flex items-center gap-3" aria-label="Yamboo Tech home">
           <span className="grid h-9 w-9 place-items-center rounded bg-[#171717] text-sm font-semibold text-white">
-            YS
+            YT
           </span>
           <span className="text-sm font-semibold tracking-[0.18em] text-[#171717] uppercase">
-            Yamboo Studio
+            Yamboo Tech
           </span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
@@ -218,12 +218,15 @@ export default function Home() {
       <section className="mx-auto grid max-w-7xl gap-12 px-5 pb-20 pt-14 sm:px-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:pb-28 lg:pt-20">
         <div>
           <p className="mb-5 inline-flex rounded bg-[#f3e8dc] px-3 py-2 text-sm font-semibold tracking-[0.2em] text-[#8b3f22] uppercase">
-Product-led engineering studio          </p>
+            Product-led technology partner
+          </p>
           <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] text-[#171717] sm:text-6xl lg:text-7xl">
-            Yamboo Studio
+            Yamboo Tech
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-7 text-[#3f403b] sm:text-xl sm:leading-8">
-Your strategic partner for technology consulting, product engineering and AI automation          </p>
+            Your strategic partner for technology consulting, product
+            engineering and AI automation
+          </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a
               className="rounded bg-[#171717] px-6 py-3.5 text-center text-sm font-semibold text-white transition hover:bg-[#2b2b2b]"
@@ -240,7 +243,7 @@ Your strategic partner for technology consulting, product engineering and AI aut
           </div>
         </div>
 
-        <div className="studio-panel relative rounded-lg border border-[#171717]/10 bg-white/75 p-4 backdrop-blur">
+        <div className="tech-panel relative rounded-lg border border-[#171717]/10 bg-white/75 p-4 backdrop-blur">
           <div className="rounded-md border border-[#171717]/10 bg-[#faf9f5] p-4">
             <div className="flex items-center justify-between pb-4">
               <div className="flex gap-2">
@@ -249,7 +252,7 @@ Your strategic partner for technology consulting, product engineering and AI aut
                 <span className="h-2.5 w-2.5 rounded-full bg-[#171717]" />
               </div>
               <p className="text-xs font-semibold tracking-[0.18em] text-[#65665f] uppercase">
-                Studio system
+                Tech system
               </p>
             </div>
 
@@ -600,7 +603,7 @@ Your strategic partner for technology consulting, product engineering and AI aut
               <iframe
                 className="block h-[600px] w-full border-0"
                 src={bookingEmbedUrl}
-                title="Book a consultation with Yamboo Studio"
+                title="Book a consultation with Yamboo Tech"
               />
             ) : (
               <div className="grid min-h-[520px] content-between p-6 sm:p-8">
@@ -714,7 +717,7 @@ Your strategic partner for technology consulting, product engineering and AI aut
       </section>
 
       <footer className="mx-auto flex max-w-7xl flex-col gap-4 border-t border-[#171717]/10 px-5 py-8 text-sm text-[#65665f] sm:flex-row sm:items-center sm:justify-between sm:px-8">
-        <p>© {currentYear} Yamboo Studio</p>
+        <p>© {currentYear} Yamboo Tech</p>
         <p>Modern software, AI, and automation.</p>
       </footer>
     </main>
