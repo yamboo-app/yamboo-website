@@ -120,7 +120,16 @@ const structuredData = {
       email: contactEmail,
       description:
         "Product engineering, AI automation, technology consulting, custom software development, and workflow automation for growing businesses.",
+      slogan: "Modern software, AI, and automation.",
       areaServed: "Worldwide",
+      knowsAbout: [
+        "Custom software development",
+        "AI automation",
+        "Workflow automation",
+        "Product engineering",
+        "Cloud integration",
+        "Technical consulting",
+      ],
       serviceType: [
         "Technical consulting",
         "Product engineering",
@@ -129,6 +138,18 @@ const structuredData = {
         "Workflow automation",
         "Cloud integration",
       ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Yamboo Tech services",
+        itemListElement: services.map((service) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: service.title,
+            description: service.description,
+          },
+        })),
+      },
       sameAs: [bookingUrl],
     },
     {

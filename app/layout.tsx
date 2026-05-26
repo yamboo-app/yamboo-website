@@ -4,9 +4,9 @@ import "./globals.css";
 
 const siteName = "Yamboo Tech";
 const title =
-  "Yamboo Tech | Product Engineering, AI Automation & Technology Consulting";
+  "Yamboo Tech | Software, AI Automation & Technology Consulting";
 const description =
-  "Yamboo Tech is a product engineering agency helping businesses design, build, and scale custom software, AI-powered tools, workflow automation, and modern digital platforms.";
+  "Yamboo Tech helps businesses design, build, and scale custom software, AI-powered tools, workflow automation, and modern digital platforms.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   keywords: [
     "product engineering agency",
     "AI automation agency",
+    "software development agency",
     "technology consulting",
     "custom software development",
     "AI-powered tools",
@@ -24,6 +25,8 @@ export const metadata: Metadata = {
     "technology product development",
     "digital product engineering",
     "business process automation",
+    "cloud integration",
+    "technical consulting",
   ],
   authors: [{ name: siteName }],
   creator: siteName,
@@ -42,7 +45,7 @@ export const metadata: Metadata = {
     description,
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description,
   },
